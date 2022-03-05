@@ -1,0 +1,26 @@
+{
+  "api": "1.0.0",
+  "editorType": [
+    "figma"
+  ],
+  "id": "1081181836422264345",
+  "name": "Quick Status",
+  "main": "build/main.js",
+  "menu": [
+    {
+      "name": "Clear",
+      "command": "src/clear-status.ts--default"
+    },
+    {
+      "name": "Add",
+      "command": "src/add-status.ts--default",
+      "parameters": [
+        {
+          "key": "add",
+          "name": "Add",
+          "description": "Add Status"
+        }
+      ]
+    }
+  ]
+}
