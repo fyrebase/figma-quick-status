@@ -6,21 +6,28 @@
   "id": "1081181836422264345",
   "name": "Quick Status",
   "main": "build/main.js",
+  "ui": "build/ui.js",
   "menu": [
     {
-      "name": "Clear",
-      "command": "src/clear-status.ts--default"
-    },
-    {
-      "name": "Add",
+      "name": "Add Status...",
       "command": "src/add-status.ts--default",
       "parameters": [
         {
           "key": "add",
-          "name": "Add",
-          "description": "Add Status"
+          "name": ""
         }
       ]
+    },
+    {
+      "name": "Clear Status",
+      "command": "src/clear-status.ts--default"
+    },
+    {
+      "separator": true
+    },
+    {
+      "name": "Status Panel",
+      "command": "src/status-panel.ts--default"
     }
   ]
 }

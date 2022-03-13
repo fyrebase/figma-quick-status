@@ -1,16 +1,17 @@
+import { addStatus, getStatusIcon, getStatusString, statusMap } from './utils/status';
+import { formatSuccessMessage } from '@create-figma-plugin/utilities';
 import { toCamelCase } from './utils/string';
-import { statusIcons, statusMap } from './utils/status';
+import * as C from "./utils/constants";
 
 export default function () {
   figma.parameters.on(
     'input',
     ({ key, query, result }: ParameterInputEvent) => {
       const statuses = [
-        'Work in Progress',
-        'Placeholder',
-        'Ready for Review',
-        'Requires Changes',
-        'Approved',
+        `${getStatusIcon(C.STATUS_WORK_IN_PROGRESS)} ${getStatusString(C.STATUS_WORK_IN_PROGRESS)}`,
+        `${getStatusIcon(C.STATUS_READY_FOR_REVIEW)} ${getStatusString(C.STATUS_READY_FOR_REVIEW)}`,
+        `${getStatusIcon(C.STATUS_REQUIRES_CHANGES)} ${getStatusString(C.STATUS_REQUIRES_CHANGES)}`,
+        `${getStatusIcon(C.STATUS_APPROVED)} ${getStatusString(C.STATUS_APPROVED)}`,
       ];
 
       result.setSuggestions(
@@ -24,13 +25,8 @@ export default function () {
       return;
     }
 
-    const key = toCamelCase(parameters.add);
+    addStatus(statusMap[toCamelCase(parameters.add.substring(3))])
 
-    figma.currentPage.selection.forEach((node: SceneNode) => {
-      node.name = statusIcons[key as keyof Object] + ' ' + node.name;
-      node.setPluginData('status', statusMap[key as keyof Object].toString());
-    });
-
-    figma.closePlugin('Status applied...');
+    figma.closePlugin(formatSuccessMessage('Status applied...'));
   });
 }

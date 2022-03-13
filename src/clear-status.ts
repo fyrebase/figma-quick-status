@@ -1,14 +1,8 @@
-import { statusIcons, lookupStatus } from './utils/status';
+import { formatSuccessMessage } from '@create-figma-plugin/utilities';
+import { clearNodeStatus } from './utils/status';
 
 export default function () {
-  figma.currentPage.selection.forEach((node) => {
-    node.name = node.name.replace(
-      statusIcons[lookupStatus(node.getPluginData('status'))] + ' ',
-      ''
-    );
+  figma.currentPage.selection.forEach((node) => clearNodeStatus(node))
 
-    node.setPluginData('status', '');
-  });
-
-  figma.closePlugin('Status removed...');
+  figma.closePlugin(formatSuccessMessage('Status cleared...'));
 }

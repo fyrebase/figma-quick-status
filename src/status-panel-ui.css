@@ -1,0 +1,16 @@
+div[class^="_small"] {
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+}
+
+.status-item {
+    display: flex;
+    padding: 10px 10px;
+    color: #3d3d3d;
+    font-weight: bold;
+}
+
+.status-item:hover {
+    background-color: rgb(241, 250, 255);
+}
